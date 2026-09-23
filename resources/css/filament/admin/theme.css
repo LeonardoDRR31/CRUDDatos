@@ -1,0 +1,840 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* =========================================================
+   LOGIN — MODERN SAAS
+   Filament 5
+   ========================================================= */
+
+:root {
+    --login-bg: #020617;
+    --login-surface: rgba(15, 23, 42, 0.78);
+    --login-input: rgba(15, 23, 42, 0.72);
+
+    --login-text: #f8fafc;
+    --login-text-muted: #94a3b8;
+    --login-label: #cbd5e1;
+
+    --login-border: rgba(255, 255, 255, 0.09);
+    --login-border-input: rgba(148, 163, 184, 0.18);
+
+    --login-indigo: #6366f1;
+    --login-violet: #8b5cf6;
+    --login-purple: #a855f7;
+
+    --login-glow: rgba(139, 92, 246, 0.25);
+}
+
+
+/* =========================================================
+   1. LAYOUT / FONDO ANIMADO
+   ========================================================= */
+
+.fi-simple-layout {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    min-height: 100vh;
+
+    background-color: #020617 !important;
+
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.045) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(99, 102, 241, 0.045) 1px,
+            transparent 1px),
+        radial-gradient(circle at 20% 20%,
+            rgba(79, 70, 229, 0.22),
+            transparent 32%),
+        radial-gradient(circle at 80% 80%,
+            rgba(168, 85, 247, 0.20),
+            transparent 32%) !important;
+
+    background-size:
+        50px 50px,
+        50px 50px,
+        100% 100%,
+        100% 100%;
+
+    animation: loginBackground 16s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   2. LUCES ANIMADAS
+   ========================================================= */
+
+.fi-simple-layout::before,
+.fi-simple-layout::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(100px);
+
+    opacity: 0.45;
+
+    z-index: -1;
+}
+
+
+/* Luz azul */
+
+.fi-simple-layout::before {
+    top: -220px;
+    left: -180px;
+
+    background:
+        radial-gradient(circle,
+            rgba(99, 102, 241, 0.65),
+            rgba(99, 102, 241, 0) 70%);
+
+    animation:
+        blueOrb 10s ease-in-out infinite;
+}
+
+
+/* Luz violeta */
+
+.fi-simple-layout::after {
+    right: -180px;
+    bottom: -220px;
+
+    background:
+        radial-gradient(circle,
+            rgba(168, 85, 247, 0.6),
+            rgba(168, 85, 247, 0) 70%);
+
+    animation:
+        purpleOrb 12s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   ANIMACIONES DEL FONDO
+   ========================================================= */
+
+@keyframes loginBackground {
+
+    0% {
+        background-position:
+            0 0,
+            0 0,
+            0 0,
+            0 0;
+    }
+
+    50% {
+        background-position:
+            25px 25px,
+            -25px -25px,
+            0 0,
+            0 0;
+    }
+
+    100% {
+        background-position:
+            0 0,
+            0 0,
+            0 0,
+            0 0;
+    }
+}
+
+
+@keyframes blueOrb {
+
+    0% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    33% {
+        transform:
+            translate3d(100px, 80px, 0) scale(1.15);
+    }
+
+    66% {
+        transform:
+            translate3d(40px, 150px, 0) scale(0.9);
+    }
+
+    100% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+}
+
+
+@keyframes purpleOrb {
+
+    0% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    33% {
+        transform:
+            translate3d(-100px, -60px, 0) scale(1.12);
+    }
+
+    66% {
+        transform:
+            translate3d(-50px, -130px, 0) scale(0.92);
+    }
+
+    100% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   3. CONTENEDOR DEL LOGIN
+   ========================================================= */
+
+.fi-simple-main-ctn {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    padding: 1.5rem;
+}
+
+
+/* =========================================================
+   4. TARJETA
+   ========================================================= */
+
+.fi-simple-main {
+    position: relative;
+
+    width: 100%;
+    max-width: 430px;
+
+    padding: 2.25rem !important;
+
+    color: var(--login-text) !important;
+
+    background:
+        linear-gradient(145deg,
+            rgba(15, 23, 42, 0.88),
+            rgba(15, 23, 42, 0.68)) !important;
+
+    border: 1px solid var(--login-border) !important;
+    border-radius: 1.5rem !important;
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 80px rgba(99, 102, 241, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    animation:
+        loginEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* Línea luminosa superior */
+
+.fi-simple-main::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 15%;
+
+    width: 70%;
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(129, 140, 248, 0.8),
+            rgba(192, 132, 252, 0.8),
+            transparent);
+
+    opacity: 0.8;
+}
+
+/* Reflejo interior */
+
+.fi-simple-main::after {
+    content: "";
+
+    position: absolute;
+    inset: 1px;
+
+    z-index: -1;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.045),
+            transparent 35%,
+            transparent 65%,
+            rgba(168, 85, 247, 0.025));
+}
+
+.fi-simple-main:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(168, 85, 247, 0.2) !important;
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.55),
+        0 0 50px rgba(139, 92, 246, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   5. HEADER / LOGO
+   ========================================================= */
+
+.fi-simple-header {
+    animation: fadeUp 0.7s 0.1s both;
+}
+
+.fi-simple-header img {
+    filter:
+        drop-shadow(0 0 15px rgba(139, 92, 246, 0.25));
+
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.fi-simple-header img:hover {
+    transform: scale(1.04);
+
+    filter:
+        drop-shadow(0 0 25px rgba(139, 92, 246, 0.45));
+}
+
+
+/* =========================================================
+   6. TIPOGRAFÍA
+   ========================================================= */
+
+.fi-simple-main h1,
+.fi-simple-main h2,
+.fi-simple-main h3 {
+    color: var(--login-text) !important;
+
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.fi-simple-header p {
+    color: var(--login-text-muted) !important;
+}
+
+
+/* =========================================================
+   7. LABELS — FILAMENT 5
+   ========================================================= */
+
+.fi-simple-main .fi-fo-field-label-content {
+    color: var(--login-label) !important;
+
+    font-weight: 500 !important;
+}
+
+.fi-simple-main .fi-fo-field-label-content sup {
+    color: #a78bfa !important;
+}
+
+
+/* =========================================================
+   8. INPUTS
+   ========================================================= */
+
+.fi-simple-main .fi-input {
+    color: var(--login-text) !important;
+
+    background-color:
+        var(--login-input) !important;
+
+    border-color:
+        var(--login-border-input) !important;
+
+    border-radius: 0.8rem !important;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.fi-simple-main .fi-input::placeholder {
+    color: #64748b !important;
+}
+
+.fi-simple-main .fi-input:hover {
+    border-color:
+        rgba(148, 163, 184, 0.3) !important;
+}
+
+.fi-simple-main .fi-input:focus {
+    color: #ffffff !important;
+
+    background-color:
+        rgba(15, 23, 42, 0.95) !important;
+
+    border-color:
+        var(--login-violet) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.12),
+        0 0 25px rgba(139, 92, 246, 0.1) !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   9. CHECKBOX
+   ========================================================= */
+
+.fi-simple-main .fi-checkbox-input {
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    position: relative;
+
+    cursor: pointer;
+
+    border:
+        1px solid rgba(148, 163, 184, 0.35) !important;
+
+    border-radius: 0.35rem !important;
+
+    background-color:
+        rgba(15, 23, 42, 0.8) !important;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+.fi-simple-main .fi-checkbox-input:hover {
+    border-color:
+        #a78bfa !important;
+
+    box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.fi-simple-main .fi-checkbox-input:checked {
+    background-color:
+        var(--login-violet) !important;
+
+    border-color:
+        var(--login-violet) !important;
+
+    box-shadow:
+        0 0 12px rgba(139, 92, 246, 0.25);
+}
+
+.fi-simple-main .fi-checkbox-label,
+.fi-simple-main .fi-checkbox-label span {
+    color:
+        var(--login-text-muted) !important;
+}
+
+
+/* =========================================================
+   10. BOTÓN PRINCIPAL
+   ========================================================= */
+
+.fi-simple-main button[type="submit"] {
+    position: relative;
+
+    overflow: hidden;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(135deg,
+            var(--login-indigo),
+            var(--login-violet) 50%,
+            var(--login-purple)) !important;
+
+    border:
+        0 !important;
+
+    border-radius:
+        0.8rem !important;
+
+    font-weight:
+        600 !important;
+
+    box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.3) !important;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease !important;
+}
+
+/* Brillo */
+
+.fi-simple-main button[type="submit"]::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+
+    transform: skewX(-20deg);
+
+    transition:
+        left 0.7s ease;
+}
+
+.fi-simple-main button[type="submit"]:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 12px 35px rgba(139, 92, 246, 0.45) !important;
+}
+
+.fi-simple-main button[type="submit"]:hover::before {
+    left: 130%;
+}
+
+.fi-simple-main button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   11. BOTONES INTERNOS / MOSTRAR CONTRASEÑA
+   ========================================================= */
+
+.fi-simple-main button:not([type="submit"]) {
+    color: #64748b !important;
+}
+
+.fi-simple-main button:not([type="submit"]):hover {
+    color: #c4b5fd !important;
+}
+
+
+/* =========================================================
+   12. LINKS
+   ========================================================= */
+
+.fi-simple-main a {
+    color: #a78bfa !important;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+.fi-simple-main a:hover {
+    color: #c4b5fd !important;
+
+    text-shadow:
+        0 0 15px rgba(167, 139, 250, 0.35);
+}
+
+
+/* =========================================================
+   13. ANIMACIONES
+   ========================================================= */
+
+@keyframes loginEnter {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes ambientGlow {
+    from {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+        transform:
+            translate3d(40px, 30px, 0) scale(1.12);
+    }
+}
+
+@keyframes loginBackground {
+    0% {
+        background-position:
+            0 0,
+            0 0,
+            0 0,
+            0 0;
+    }
+
+    50% {
+        background-position:
+            20px 20px,
+            20px 20px,
+            0 0,
+            0 0;
+    }
+
+    100% {
+        background-position:
+            0 0,
+            0 0,
+            0 0,
+            0 0;
+    }
+}
+
+
+/* =========================================================
+   14. ACCESIBILIDAD
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================================
+   15. MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+    .fi-simple-main-ctn {
+        position: relative;
+        z-index: 2;
+    }
+
+
+    .fi-simple-main {
+        z-index: 2;
+    }
+
+}
+
+/* =========================================================
+   PARTÍCULAS
+   ========================================================= */
+
+.login-particles {
+    position: fixed;
+    inset: 0;
+
+    z-index: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+.login-particles span {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: rgba(167, 139, 250, 0.7);
+
+    box-shadow:
+        0 0 8px rgba(139, 92, 246, 0.8),
+        0 0 16px rgba(139, 92, 246, 0.35);
+
+    animation:
+        particleFloat var(--duration) ease-in-out infinite;
+}
+
+
+/* Posiciones */
+
+.login-particles span:nth-child(1) {
+    left: 8%;
+    top: 20%;
+    --duration: 7s;
+}
+
+.login-particles span:nth-child(2) {
+    left: 18%;
+    top: 70%;
+    --duration: 10s;
+}
+
+.login-particles span:nth-child(3) {
+    left: 30%;
+    top: 35%;
+    --duration: 8s;
+}
+
+.login-particles span:nth-child(4) {
+    left: 42%;
+    top: 80%;
+    --duration: 12s;
+}
+
+.login-particles span:nth-child(5) {
+    left: 55%;
+    top: 15%;
+    --duration: 9s;
+}
+
+.login-particles span:nth-child(6) {
+    left: 67%;
+    top: 65%;
+    --duration: 11s;
+}
+
+.login-particles span:nth-child(7) {
+    left: 76%;
+    top: 30%;
+    --duration: 8s;
+}
+
+.login-particles span:nth-child(8) {
+    left: 88%;
+    top: 75%;
+    --duration: 13s;
+}
+
+.login-particles span:nth-child(9) {
+    left: 12%;
+    top: 50%;
+    --duration: 11s;
+}
+
+.login-particles span:nth-child(10) {
+    left: 35%;
+    top: 10%;
+    --duration: 9s;
+}
+
+.login-particles span:nth-child(11) {
+    left: 72%;
+    top: 85%;
+    --duration: 10s;
+}
+
+.login-particles span:nth-child(12) {
+    left: 92%;
+    top: 45%;
+    --duration: 12s;
+}
+
+
+/* Movimiento */
+
+@keyframes particleFloat {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate3d(0, 30px, 0) scale(0.5);
+    }
+
+    20% {
+        opacity: 0.7;
+    }
+
+    50% {
+        transform:
+            translate3d(25px, -40px, 0) scale(1);
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate3d(-20px, -90px, 0) scale(0.4);
+    }
+}

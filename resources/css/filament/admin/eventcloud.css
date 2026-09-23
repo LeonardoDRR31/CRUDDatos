@@ -1,0 +1,720 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+
+/* =========================================================
+   EVENTCLOUD — IDENTIDAD VISUAL
+   ========================================================= */
+
+:root {
+    --ec-primary: #f97360;
+    --ec-primary-dark: #dc5a4a;
+
+    --ec-ai: #c084fc;
+    --ec-ai-light: #d8b4fe;
+
+    --ec-success: #65a30d;
+    --ec-warning: #eab308;
+    --ec-danger: #ef4444;
+
+    --ec-bg: #fff7ed;
+    --ec-surface: #fffbf5;
+
+    --ec-text: #431407;
+    --ec-text-muted: #9a6b5b;
+
+    --ec-border: #fed7aa;
+
+    --ec-shadow:
+        0 20px 60px rgba(124, 45, 18, 0.12);
+
+    --ec-glow:
+        rgba(249, 115, 96, 0.22);
+
+
+    --ec-font-sans: "Libre Baskerville", serif;
+
+    --default-font-family: var(--ec-font-sans);
+}
+
+
+
+/* =========================================================
+   FONDO
+   ========================================================= */
+
+.fi-simple-layout {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    min-height: 100vh;
+
+    background-color: var(--ec-bg) !important;
+
+    background-image:
+        linear-gradient(rgba(56, 189, 248, 0.035) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(56, 189, 248, 0.035) 1px,
+            transparent 1px),
+        radial-gradient(circle at 15% 20%,
+            rgba(56, 189, 248, 0.16),
+            transparent 32%),
+        radial-gradient(circle at 85% 80%,
+            rgba(139, 92, 246, 0.12),
+            transparent 32%) !important;
+
+    background-size:
+        50px 50px,
+        50px 50px,
+        100% 100%,
+        100% 100%;
+}
+
+
+/* =========================================================
+   LUCES AMBIENTALES
+   ========================================================= */
+
+.fi-simple-layout::before,
+.fi-simple-layout::after {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(90px);
+
+    opacity: 0.45;
+
+    z-index: -1;
+}
+
+.fi-simple-layout::before {
+    top: -220px;
+    left: -180px;
+
+    background:
+        radial-gradient(circle,
+            rgba(56, 189, 248, 0.35),
+            transparent 70%);
+
+    animation: ecBlueOrb 12s ease-in-out infinite;
+}
+
+.fi-simple-layout::after {
+    right: -180px;
+    bottom: -220px;
+
+    background:
+        radial-gradient(circle,
+            rgba(139, 92, 246, 0.25),
+            transparent 70%);
+
+    animation: ecPurpleOrb 15s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CONTENEDOR
+   ========================================================= */
+
+.fi-simple-main-ctn {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    padding: 1.5rem;
+}
+
+
+/* =========================================================
+   TARJETA LOGIN
+   ========================================================= */
+
+.fi-simple-main {
+    position: relative;
+
+    width: 100%;
+    max-width: 430px;
+
+    padding: 2.25rem !important;
+
+    color: var(--ec-text) !important;
+
+    background:
+        rgba(255, 255, 255, 0.82) !important;
+
+    border:
+        1px solid rgba(226, 232, 240, 0.85) !important;
+
+    border-radius: 1.5rem !important;
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        var(--ec-shadow),
+        0 0 60px rgba(56, 189, 248, 0.06);
+
+    animation:
+        ecLoginEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.fi-simple-main:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(56, 189, 248, 0.30) !important;
+
+    box-shadow:
+        0 28px 70px rgba(15, 23, 42, 0.13),
+        0 0 50px rgba(56, 189, 248, 0.10);
+}
+
+
+/* =========================================================
+   BRILLO SUPERIOR
+   ========================================================= */
+
+.fi-simple-main::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 15%;
+
+    width: 70%;
+    height: 2px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            var(--ec-primary),
+            var(--ec-ai),
+            transparent);
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   HEADER / LOGO
+   ========================================================= */
+
+.fi-simple-header {
+    animation:
+        ecFadeUp 0.7s 0.1s both;
+}
+
+.fi-simple-header img {
+    filter:
+        drop-shadow(0 4px 12px rgba(56, 189, 248, 0.20));
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+.fi-simple-header img:hover {
+    transform: scale(1.04);
+
+    filter:
+        drop-shadow(0 6px 20px rgba(56, 189, 248, 0.30));
+}
+
+
+/* =========================================================
+   TIPOGRAFÍA
+   ========================================================= */
+
+.fi-simple-main {
+    font-family: var(--ec-font-sans) !important;
+
+    color: var(--ec-text) !important;
+}
+
+
+.fi-simple-main p,
+.fi-simple-main label,
+.fi-simple-main input,
+.fi-simple-main textarea,
+.fi-simple-main select,
+.fi-simple-main button,
+.fi-simple-main a,
+.fi-simple-main span {
+    font-family: var(--ec-font-sans) !important;
+}
+
+
+/* ---------------------------------------------------------
+   TÍTULOS
+   --------------------------------------------------------- */
+
+.fi-simple-main h1,
+.fi-simple-main h2,
+.fi-simple-main h3 {
+    margin: 0;
+
+    color: var(--ec-text) !important;
+
+    font-family: var(--ec-font-sans) !important;
+
+    letter-spacing: -0.025em;
+}
+
+.fi-simple-main h1 {
+    font-size: var(--ec-font-size-2xl);
+
+    font-weight: var(--ec-weight-bold);
+
+    line-height: var(--ec-line-tight);
+}
+
+.fi-simple-main h2 {
+    font-size: var(--ec-font-size-xl);
+
+    font-weight: var(--ec-weight-semibold);
+
+    line-height: var(--ec-line-tight);
+}
+
+.fi-simple-main h3 {
+    font-size: var(--ec-font-size-lg);
+
+    font-weight: var(--ec-weight-semibold);
+
+    line-height: var(--ec-line-normal);
+}
+
+
+/* ---------------------------------------------------------
+   TEXTO NORMAL
+   --------------------------------------------------------- */
+
+.fi-simple-main p {
+    color: var(--ec-text-muted);
+
+    font-size: var(--ec-font-size-base);
+
+    font-weight: var(--ec-weight-normal);
+
+    line-height: var(--ec-line-relaxed);
+}
+
+
+/* ---------------------------------------------------------
+   SUBTÍTULO DEL LOGIN
+   --------------------------------------------------------- */
+
+.fi-simple-header p {
+    margin-top: 0.5rem;
+
+    color: var(--ec-text-muted) !important;
+
+    font-size: var(--ec-font-size-sm);
+
+    font-weight: var(--ec-weight-normal);
+
+    line-height: var(--ec-line-relaxed);
+}
+
+
+/* ---------------------------------------------------------
+   LABELS
+   --------------------------------------------------------- */
+
+.fi-simple-main .fi-fo-field-label-content {
+    color: var(--ec-text) !important;
+
+    font-size: var(--ec-font-size-sm);
+
+    font-weight: var(--ec-weight-medium) !important;
+
+    line-height: var(--ec-line-normal);
+
+    letter-spacing: -0.005em;
+}
+
+
+/* ---------------------------------------------------------
+   CAMPOS OBLIGATORIOS
+   --------------------------------------------------------- */
+
+.fi-simple-main .fi-fo-field-label-content sup {
+    color: var(--ec-danger) !important;
+}
+
+
+/* ---------------------------------------------------------
+   TEXTO DE AYUDA
+   --------------------------------------------------------- */
+
+.fi-simple-main .fi-fo-field-description {
+    color: var(--ec-text-muted) !important;
+
+    font-size: var(--ec-font-size-xs);
+
+    line-height: var(--ec-line-relaxed);
+}
+
+
+/* ---------------------------------------------------------
+   MENSAJES DE ERROR
+   --------------------------------------------------------- */
+
+.fi-simple-main .fi-fo-field-error-message {
+    color: var(--ec-danger) !important;
+
+    font-size: var(--ec-font-size-xs);
+
+    font-weight: var(--ec-weight-medium);
+}
+
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.fi-simple-main .fi-input {
+    color: var(--ec-text) !important;
+
+    background:
+        rgba(248, 250, 252, 0.80) !important;
+
+    border-color:
+        var(--ec-border) !important;
+
+    border-radius:
+        0.8rem !important;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.fi-simple-main .fi-input::placeholder {
+    color:
+        #94a3b8 !important;
+}
+
+.fi-simple-main .fi-input:hover {
+    border-color:
+        rgba(56, 189, 248, 0.35) !important;
+}
+
+.fi-simple-main .fi-input:focus {
+    color: var(--ec-text) !important;
+
+    background:
+        #ffffff !important;
+
+    border-color:
+        var(--ec-primary) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(56, 189, 248, 0.12),
+        0 0 20px rgba(56, 189, 248, 0.08) !important;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.fi-simple-main .fi-checkbox-input {
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    position: relative;
+
+    cursor: pointer;
+
+    border:
+        1px solid #cbd5e1 !important;
+
+    border-radius:
+        0.35rem !important;
+
+    background:
+        #ffffff !important;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.fi-simple-main .fi-checkbox-input:hover {
+    border-color:
+        var(--ec-primary) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(56, 189, 248, 0.10);
+}
+
+.fi-simple-main .fi-checkbox-input:checked {
+    background:
+        var(--ec-primary) !important;
+
+    border-color:
+        var(--ec-primary) !important;
+
+    box-shadow:
+        0 0 12px rgba(56, 189, 248, 0.20);
+}
+
+.fi-simple-main .fi-checkbox-label,
+.fi-simple-main .fi-checkbox-label span {
+    color:
+        var(--ec-text-muted) !important;
+}
+
+
+/* =========================================================
+   BOTÓN
+   ========================================================= */
+
+.fi-simple-main button[type="submit"] {
+    position: relative;
+
+    overflow: hidden;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(135deg,
+            var(--ec-primary-dark),
+            var(--ec-primary)) !important;
+
+    border: 0 !important;
+
+    border-radius:
+        0.8rem !important;
+
+    font-weight:
+        600 !important;
+
+    box-shadow:
+        0 8px 22px rgba(37, 99, 235, 0.22) !important;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease !important;
+}
+
+.fi-simple-main button[type="submit"]:hover {
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.05);
+
+    box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.30) !important;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.fi-simple-main a {
+    color:
+        var(--ec-primary-dark) !important;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+.fi-simple-main a:hover {
+    color:
+        var(--ec-ai) !important;
+
+    text-shadow:
+        0 0 12px rgba(139, 92, 246, 0.20);
+}
+
+
+/* =========================================================
+   BOTÓN MOSTRAR CONTRASEÑA
+   ========================================================= */
+
+.fi-simple-main button:not([type="submit"]) {
+    color:
+        #94a3b8 !important;
+}
+
+.fi-simple-main button:not([type="submit"]):hover {
+    color:
+        var(--ec-ai) !important;
+}
+
+
+/* =========================================================
+   ANIMACIONES
+   ========================================================= */
+
+@keyframes ecLoginEnter {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+@keyframes ecFadeUp {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes ecBlueOrb {
+
+    0%,
+    100% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(80px, 70px, 0) scale(1.12);
+    }
+}
+
+@keyframes ecPurpleOrb {
+
+    0%,
+    100% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(-70px, -60px, 0) scale(1.10);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+    .fi-simple-main-ctn {
+        padding: 1rem;
+    }
+
+    .fi-simple-main {
+        padding: 1.5rem !important;
+
+        border-radius:
+            1.25rem !important;
+    }
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================================
+   TOPBAR FILAMENT UNIFICADO
+   ========================================================= */
+.fi-body {
+    background-image:
+        
+        /*url("https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1920");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;*/
+}
+.fi-topbar-ctn {
+    background: transparent !important;
+    
+}
+
+.fi-topbar {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.fi-topbar > div {
+    background: transparent !important;
+}
+
+.fi-header {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+
+
