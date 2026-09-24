@@ -22,9 +22,10 @@
                 <x-eventcloud-logo />
             </a>
 
-            <a href="{{ url('/admin/login') }}" class="ec-login">
+            <a href="{{ route('filament.admin.auth.login') }}" class="ec-login">
                 Iniciar sesión
             </a>
+
 
         </header>
 
@@ -61,9 +62,10 @@
                             Descubrir plataforma
                         </a>
 
-                        <a href="{{ url('/admin/login') }}" class="ec-button ec-button-secondary">
+                        <a href="{{ route('filament.admin.auth.login') }}" class="ec-login">
                             Iniciar sesión
                         </a>
+
 
                     </div>
 
@@ -189,7 +191,7 @@
 
                         <h3>
                             Asistente IA
-                            
+
                         </h3>
 
                         <p>
